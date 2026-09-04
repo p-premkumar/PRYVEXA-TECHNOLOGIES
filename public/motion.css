@@ -80,6 +80,34 @@ body {
 .brand-mark i:first-child { background: #6f9b96; }
 .brand-mark i:last-child { background: var(--green); }
 
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  align-items: center;
+}
+
+.brand-mark img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.visual-core img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.visual-core small {
+  position: absolute;
+  bottom: 24px;
+  z-index: 1;
+}
+
 .service-card p strong {
   color: var(--ink);
   font-weight: 800;
@@ -89,7 +117,7 @@ body {
   position: relative;
   overflow: hidden;
   border-top: 3px solid transparent;
-  box-shadow: 0 8px 0 rgba(25, 59, 58, .025);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, .16);
 }
 
 .service-card::after {
@@ -108,7 +136,7 @@ body {
 .service-card:hover,
 .service-card:focus-within {
   border-top-color: var(--green-deep);
-  box-shadow: 0 18px 35px rgba(25, 59, 58, .12);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, .28);
 }
 
 .service-card:hover::after,
@@ -131,7 +159,7 @@ body {
   border: 1px solid var(--line);
   border-radius: 50%;
   color: var(--green-deep);
-  background: rgba(255, 253, 248, .55);
+  background: rgba(16, 43, 72, .72);
 }
 
 .service-card > a {
@@ -157,7 +185,7 @@ body {
   padding: 7px 10px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 253, 248, .7);
+  background: rgba(16, 43, 72, .72);
   color: var(--green-deep);
   font: 500 10px var(--mono);
   letter-spacing: .4px;
@@ -189,6 +217,50 @@ body {
 .process-step strong {
   color: var(--green-deep);
   font: 500 12px var(--mono);
+}
+
+/* Keep every major surface in the navy system. */
+.header-cta,
+.button-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.featured {
+  background: var(--blue);
+}
+
+.project-green .project-art {
+  background: #afdcc3;
+}
+
+.store-window {
+  background: #edf3ef;
+  box-shadow: 12px 12px 0 rgba(44, 104, 79, .16);
+}
+
+.store-content {
+  border-top-color: #b9cbc1;
+}
+
+.project-details {
+  background: white;
+  color: var(--ink);
+}
+
+.floating-card {
+  background: rgba(255, 255, 255, .76);
+  border-color: #d7e2da;
+  box-shadow: 0 9px 25px rgba(35, 67, 61, .06);
+}
+
+.contact-form input,
+.contact-form textarea {
+  border-bottom-color: #b9cbc1;
+}
+
+.visual-core {
+  background: var(--green);
 }
 
 .contact-form input:focus,
