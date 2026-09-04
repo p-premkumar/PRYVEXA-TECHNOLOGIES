@@ -263,11 +263,13 @@ body {
   background: var(--green);
 }
 
+.contact-form input:hover,
 .contact-form input:focus,
+.contact-form textarea:hover,
 .contact-form textarea:focus {
-  outline: 2px solid rgba(184, 92, 72, .35);
-  outline-offset: 3px;
-  border-color: var(--green-deep);
+  outline: none;
+  border-color: #b9cbc1;
+  box-shadow: none;
 }
 
 @media (max-width: 720px) {
