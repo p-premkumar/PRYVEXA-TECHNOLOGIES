@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 const app = express();
