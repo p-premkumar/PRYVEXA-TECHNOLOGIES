@@ -5,25 +5,13 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 require('dotenv').config();
-const nodemailer = require('nodemailer');
+const handleContact = require('./lib/contact-handler');
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
 const httpsKeyPath = process.env.HTTPS_KEY_PATH;
 const httpsCertPath = process.env.HTTPS_CERT_PATH;
 const useHttps = Boolean(httpsKeyPath && httpsCertPath);
-const contactEmail = process.env.CONTACT_EMAIL || 'p.premkumar7578@gmail.com';
-const mailTransport = process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS
-  ? nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    })
-  : null;
 
 app.disable('x-powered-by');
 app.use(express.json({ limit: '10kb' }));
@@ -36,46 +24,7 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/api/contact', async (req, res) => {
-  const name = typeof req.body.name === 'string' ? req.body.name.trim() : '';
-  const email = typeof req.body.email === 'string' ? req.body.email.trim() : '';
-  const company = typeof req.body.company === 'string' ? req.body.company.trim() : '';
-  const message = typeof req.body.message === 'string' ? req.body.message.trim() : '';
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!name || !emailPattern.test(email) || !message) {
-    return res.status(400).json({ error: 'Please provide a name, valid email, and project details.' });
-  }
-
-  if (!mailTransport) {
-    console.error('Contact form email is not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS.');
-    return res.status(503).json({ error: 'Email delivery is not configured yet. Please email us directly.' });
-  }
-
-  try {
-    await mailTransport.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: contactEmail,
-      replyTo: email,
-      subject: `New enquiry from ${name}`,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Company: ${company || 'Not provided'}`,
-        '',
-        'Project details:',
-        message
-      ].join('\n')
-    });
-  } catch (error) {
-    console.error('Contact form email failed:', error.message);
-    return res.status(502).json({ error: 'We could not deliver your enquiry. Please email us directly.' });
-  }
-
-  return res.status(201).json({
-    message: 'Thanks. Your project details are in, and we will be in touch shortly.'
-  });
-});
+app.post('/api/contact', handleContact);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
