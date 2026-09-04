@@ -56,3 +56,43 @@ body {
     transition-duration: .01ms !important;
   }
 }
+
+/* Warm, grounded palette for stronger contrast and a more distinctive brand feel. */
+:root {
+  --ink: #193b3a;
+  --muted: #657572;
+  --paper: #f7f3ec;
+  --white: #fffdf8;
+  --green: #e5c07b;
+  --green-deep: #b85c48;
+  --blue: #c8ddd8;
+  --line: #d9d5cc;
+}
+
+body {
+  background-image: linear-gradient(rgba(25, 59, 58, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(25, 59, 58, .035) 1px, transparent 1px);
+}
+
+.site-header {
+  background: rgba(247, 243, 236, .84);
+}
+
+.brand-mark i:first-child { background: #6f9b96; }
+.brand-mark i:last-child { background: var(--green); }
+
+.service-card p strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.pulse { box-shadow: 0 0 0 5px rgba(184, 92, 72, .12); }
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(184, 92, 72, .12); }
+  50% { box-shadow: 0 0 0 10px rgba(184, 92, 72, 0); }
+}
+
+@keyframes core-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 12px rgba(229, 192, 123, .18); }
+  50% { transform: scale(1.04); box-shadow: 0 0 0 20px rgba(229, 192, 123, .08); }
+}
