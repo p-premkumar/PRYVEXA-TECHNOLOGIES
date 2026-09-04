@@ -1,0 +1,58 @@
+/* Motion keeps the technical system feeling alive without distracting from the work. */
+body {
+  background-image: linear-gradient(rgba(29, 96, 77, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(29, 96, 77, .035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: 0 0;
+  animation: grid-drift 24s linear infinite;
+}
+
+.site-header {
+  background: rgba(242, 245, 240, .78);
+  backdrop-filter: blur(8px);
+}
+
+.pulse { animation: pulse-ring 2.4s ease-out infinite; }
+.orbit-one { animation: orbit-spin 18s linear infinite; }
+.orbit-two { animation: orbit-spin-reverse 25s linear infinite; }
+.visual-core { animation: core-breathe 4s ease-in-out infinite; }
+.card-top { animation: float-card 5s ease-in-out infinite; }
+.card-bottom { animation: float-card 6s ease-in-out -1.5s infinite; }
+
+.service-card,
+.project {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.service-card:hover,
+.project:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 35px rgba(16, 44, 42, .1);
+}
+
+.button-primary { transition: transform .25s ease, background .25s ease; }
+.button-primary:hover { transform: translateY(-3px); }
+
+@keyframes grid-drift { to { background-position: 48px 48px; } }
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(29, 96, 77, .1); }
+  50% { box-shadow: 0 0 0 10px rgba(29, 96, 77, 0); }
+}
+@keyframes orbit-spin { to { transform: rotate(333deg); } }
+@keyframes orbit-spin-reverse { to { transform: rotate(-332deg); } }
+@keyframes core-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 12px rgba(155, 242, 179, .17); }
+  50% { transform: scale(1.04); box-shadow: 0 0 0 20px rgba(155, 242, 179, .08); }
+}
+@keyframes float-card {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

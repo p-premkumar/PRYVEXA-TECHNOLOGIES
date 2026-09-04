@@ -1,0 +1,14 @@
+{
+  "name": "pryvexatechnologies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pryvexa Technologies - full stack development studio website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
